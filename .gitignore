@@ -1,0 +1,11 @@
+venv
+*.pyc
+staticfiles
+.env
+env
+frontend/node_modules
+backend/static/build
+backend/db.sqlite3
+backend/.DS_Store
+backend/__pycache__
+backend/.idea
