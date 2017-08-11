@@ -14,7 +14,7 @@ class Materiau(models.Model):
     name = models.CharField(max_length=255)
     sub_family = models.ForeignKey('SousFamille', verbose_name="Sous-famille")
     usage = models.TextField(default="N.R.")
-    date = models.DateField(null=True, blank=True, auto_now_add=True)
+    creation_date = models.DateField(null=True, blank=True, auto_now_add=True)
     available = models.BooleanField(null=True, blank=True, default=True)
     qr_code = models.ImageField(upload_to='materiaux', null=True, blank=True)
 
