@@ -1,12 +1,17 @@
 from django.db import models
 
 
-class Family(models.Model):
+class Famille(models.Model):
 
-    constituent = models.CharField(max_length=255, blank=True, null=True)
+    class Meta:
+        verbose_name = "Famille"
+        verbose_name_plural = "Familles"
+
+    matiere = models.CharField(max_length=255, blank=True, null=True)
     reference = models.CharField(max_length=2, unique=True, blank=True, null=True)
 
     def compute_and_save(self):
+        self.matiere = self.matiere.upper()
         self.reference = self.reference.upper()
         self.save()
 
