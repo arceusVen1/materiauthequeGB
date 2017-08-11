@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models.materiau import Materiau
+from .models.materiau import Materiau, MateriauApprouve, Brouillon
 from .models.sous_famille import SousFamille
 from .models.famille import Famille
 from django import forms
@@ -51,8 +51,16 @@ class SousFamilleAdmin(admin.ModelAdmin):
     form = MySousFamilleAdminForm
 
 
-@admin.register(Materiau)
-class MateriauAdmin(admin.ModelAdmin):
+@admin.register(MateriauApprouve)
+class MateriauApproveAdmin(admin.ModelAdmin):
+
+    date_hierarchy = 'date_de_creation'
+    readonly_fields = ('qr_code', 'date_de_creation',)
+    form = MyMateriauAdminForm
+
+
+@admin.register(Brouillon)
+class BrouillonAdmin(admin.ModelAdmin):
 
     date_hierarchy = 'date_de_creation'
     readonly_fields = ('qr_code', 'date_de_creation',)

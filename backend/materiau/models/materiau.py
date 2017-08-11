@@ -17,6 +17,7 @@ class Materiau(models.Model):
     date_de_creation = models.DateField(null=True, blank=True, auto_now_add=True)
     disponible = models.BooleanField(blank=True, default=True)
     qr_code = models.ImageField(upload_to='materiaux', null=True, blank=True)
+    brouillon = models.BooleanField(blank=True, default=False)
 
     @property
     def family(self):
@@ -56,3 +57,31 @@ class Materiau(models.Model):
 
     def __str__(self):
         return self.reference
+
+
+class BrouillonManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(brouillon=True)
+
+
+class MateriauApprouveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(brouillon=False)
+
+
+class Brouillon(Materiau):
+
+    class Meta:
+        proxy = True
+        verbose_name_plural = "Brouillons"
+
+    objects = BrouillonManager()
+
+
+class MateriauApprouve(Materiau):
+
+    class Meta:
+        proxy = True
+        verbose_name_plural = "Materiaux approuvés"
+
+    objects = MateriauApprouveManager()
