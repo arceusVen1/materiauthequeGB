@@ -13,7 +13,7 @@ class Materiau(models.Model):
 
     nom = models.CharField(max_length=255)
     sous_famille = models.ForeignKey(SousFamille)
-    usage = models.TextField(default="N.R.")
+    usage = models.TextField(default="N.R.", null=True, blank=True)
     date_de_creation = models.DateField(null=True, blank=True, auto_now_add=True)
     disponible = models.BooleanField(blank=True, default=True)
     qr_code = models.ImageField(upload_to='materiaux', null=True, blank=True)
@@ -26,8 +26,7 @@ class Materiau(models.Model):
     def reference(self):
         return "MAT-{}-{}".format(self.sous_famille.reference, self.id)
 
-
-    def generate_qrcode(self):
+    def generate_qr_code(self):
         path = os.path.join(settings.MEDIA_ROOT, "materiaux/" + str(self.id))
         qr = qrcode.QRCode(version=20, error_correction=qrcode.constants.ERROR_CORRECT_L)
         qr.add_data(settings.SITE_URL + self.get_absolute_url())
@@ -44,11 +43,10 @@ class Materiau(models.Model):
 
     def compute_and_save(self):
         """
-        used for creation and update. If the materiau sub famille is changed it needs to change folder
-        and the qr code to be regenerated
+        used for creation and update.
 
         """
-
+        self.nom = self.nom.title()
         self.save()
         self.generate_folder()
         self.generate_qrcode()
