@@ -35,24 +35,44 @@ class Materiau(models.Model):
         qr.add_data(settings.SITE_URL + self.get_absolute_url())
         path = os.path.join(path, "qr_" + str(self.id) + ".jpg")
         qr.make_image().save(path)
-        self.qr_code = "materiaux/{}/{}.jpg".format(str(self.id), str(self.id))
+        self.qr_code = "materiaux/{}/qr_{}.jpg".format(str(self.id), str(self.id))
 
     def generate_folder(self):
+        """
+        generate a folder for the media of a matériau in media/materiaux/
+        named by the id of the matériau. The id never changes so ne need to recall this function after first save
+        """
         path = os.path.join(settings.MEDIA_ROOT, "materiaux/" + str(self.id))
         try:
             os.makedirs(path)
         except OSError as e:
             print(e)
 
-    def compute_and_save(self):
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
         """
         used for creation and update.
 
         """
         self.nom = self.nom.title()
-        self.save()
+
+        # if its a brouillon there is no more computation so save and return
+
+        if self.brouillon:
+            super().save()
+            return
+
+        # we need to get the id of the materiau first before generating its folder and qr code so we save it once
+
+        if self.id is None:
+            super().save()
+
+        # then we generate the qr code  and folder
+        # we call generate folder for each save in case a brouillon is turned into a matériau approuvé
+
         self.generate_folder()
-        self.generate_qrcode()
+        self.generate_qr_code()
+        super().save()
 
     def get_absolute_url(self):
         return u'/materiaux/{}'.format(self.reference)
