@@ -2,14 +2,15 @@ from django.db import models
 import os
 from django.conf import settings
 from .sous_famille import SousFamille
+from .fournisseur import Fournisseur
 import qrcode
 
 
 class Materiau(models.Model):
 
     class Meta:
-        verbose_name = "Materiau"
-        verbose_name_plural = "Materiaux"
+        verbose_name = "Matériau"
+        verbose_name_plural = "Matériaux"
 
     nom = models.CharField(max_length=255)
     sous_famille = models.ForeignKey(SousFamille)
@@ -18,6 +19,7 @@ class Materiau(models.Model):
     disponible = models.BooleanField(blank=True, default=True)
     qr_code = models.ImageField(upload_to='materiaux', null=True, blank=True)
     brouillon = models.BooleanField(blank=True, default=False)
+    fournisseur = models.ForeignKey(Fournisseur, null=True, blank=True)
 
     @property
     def family(self):

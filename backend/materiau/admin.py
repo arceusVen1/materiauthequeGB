@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models.materiau import Materiau, MateriauApprouve, Brouillon
 from .models.sous_famille import SousFamille
 from .models.famille import Famille
+from .models.fournisseur import Fournisseur
 from django import forms
 
 
@@ -65,3 +66,14 @@ class BrouillonAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_de_creation'
     readonly_fields = ('qr_code', 'date_de_creation',)
     form = MyMateriauAdminForm
+
+
+@admin.register(Fournisseur)
+class FournisseurAdmin(admin.ModelAdmin):
+
+    list_display = ('nom', 'site_web_url',)
+
+    def site_web_url(self, obj):
+        return '<a href="%s">%s</a>' % (obj.site_web, obj.site_web)
+
+    site_web_url.allow_tags = True
