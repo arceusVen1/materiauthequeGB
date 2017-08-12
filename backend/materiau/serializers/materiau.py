@@ -4,6 +4,9 @@ from materiau.models.materiau import Materiau
 
 class MateriauSerializer(serializers.ModelSerializer):
 
+    sous_famille = serializers.StringRelatedField(many=False)
+    attribut_set = serializers.StringRelatedField(many=True)
+
     def validate(self, data):
         return data
 
@@ -23,8 +26,12 @@ class MateriauSerializer(serializers.ModelSerializer):
                   'qr_code',
                   'brouillon',
                   'fournisseur',
+                  'attribut_set',
+                  'reference',
                   )
         read_only_fields = ('id',
                             'qr_code',
+                            'reference',
+                            'attribut_set',
                             )
 
