@@ -1,42 +1,9 @@
 from django.contrib import admin
-from .models.materiau import Materiau, MateriauApprouve, Brouillon
+from .models.materiau import MateriauApprouve, Brouillon
 from .models.sous_famille import SousFamille
 from .models.famille import Famille
 from .models.fournisseur import Fournisseur
-from django import forms
-
-
-class MyFamilyAdminForm(forms.ModelForm):
-
-    class Meta:
-        model = Famille
-        fields = '__all__'
-
-    def clean_reference(self):
-        return self.cleaned_data['reference'].upper()
-
-    def clean_matiere(self):
-        return self.cleaned_data['matiere'].upper()
-
-
-class MySousFamilleAdminForm(forms.ModelForm):
-
-    class Meta:
-        model = SousFamille
-        exclude = ['numero_de_reference',]
-
-    def clean_matiere(self):
-        return self.cleaned_data['matiere'].upper()
-
-
-class MyMateriauAdminForm(forms.ModelForm):
-
-    class Meta:
-        model = Materiau
-        exclude = ('qr_code', 'date_de_creation',)
-
-    def clean_nom(self):
-        return self.cleaned_data['nom'].title()
+from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 
 @admin.register(Famille)
