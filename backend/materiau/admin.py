@@ -3,6 +3,7 @@ from .models.materiau import MateriauApprouve, Brouillon
 from .models.sous_famille import SousFamille
 from .models.famille import Famille
 from .models.fournisseur import Fournisseur
+from .models.propriete import Propriete
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 
@@ -44,3 +45,8 @@ class FournisseurAdmin(admin.ModelAdmin):
         return '<a href="%s">%s</a>' % (obj.site_web, obj.site_web)
 
     site_web_url.allow_tags = True
+
+
+@admin.register(Propriete)
+class ProprieteAdmin(admin.ModelAdmin):
+    pass
