@@ -1,3 +1,0 @@
-django-rest-framework
-qrcode
-Pillow
