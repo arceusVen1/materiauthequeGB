@@ -1,6 +1,6 @@
 # Mathériauthèque du Lycée Georges Brassens
 
-----------
+---
 
 ## Auteur:
 
@@ -8,7 +8,7 @@
 jeremy.venin@telecom-sudparis.eu (arceusVen1)
 gunjin.udval@telecom-sudparis.eu (gunjinudv)
 ```
-
+---
 Le but de ce projet est de permettre la création d'une matériauthèque modulaire et responsive 
 permettant la gestion de différents matériaux et composites dans le cadre du lycée Georges Brassens.
  
@@ -28,6 +28,6 @@ permettant la gestion de différents matériaux et composites dans le cadre du l
  $ python backend/manage.py runserver
  ```
 
- Rendez vous maintenant sur ```http://localhost:8000/admin``` pour toute l'interface d'administration. L'API est elle disponible a ```http://localhost:8000/api/{materiaux, fournisseur, famille...}
+ Rendez vous maintenant sur ```http://localhost:8000/admin``` pour toute l'interface d'administration. L'API est elle disponible a ```http://localhost:8000/api/{materiaux, fournisseur, famille...}```
  
 ### Bonnes Requêtes !
