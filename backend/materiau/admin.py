@@ -4,8 +4,15 @@ from .models.sous_famille import SousFamille
 from .models.famille import Famille
 from .models.fournisseur import Fournisseur
 from .models.propriete import Propriete
+from .models.attribut import Attribut
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
+
+class AttributInline(admin.StackedInline):
+    model = Attribut
+    min_num = 1
+    extra = True
+    readonly_fields = ('materiau',)
 
 @admin.register(Famille)
 class FamilleAdmin(admin.ModelAdmin):
@@ -25,6 +32,9 @@ class MateriauApproveAdmin(admin.ModelAdmin):
 
     date_hierarchy = 'date_de_creation'
     readonly_fields = ('qr_code', 'date_de_creation',)
+    inlines = [
+        AttributInline,
+    ]
     form = MyMateriauAdminForm
 
 
@@ -33,6 +43,9 @@ class BrouillonAdmin(admin.ModelAdmin):
 
     date_hierarchy = 'date_de_creation'
     readonly_fields = ('qr_code', 'date_de_creation',)
+    inlines = [
+        AttributInline,
+    ]
     form = MyMateriauAdminForm
 
 
@@ -50,3 +63,4 @@ class FournisseurAdmin(admin.ModelAdmin):
 @admin.register(Propriete)
 class ProprieteAdmin(admin.ModelAdmin):
     pass
+

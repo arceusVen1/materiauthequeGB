@@ -3,8 +3,11 @@ from django.db import models
 
 class Propriete(models.Model):
 
-    TYPE_CHOICES = (("thermodynamique", "thermodynamique"),
+    TYPE_CHOICES = (('générale', 'générale'),
+                    ("thermique", "thermodynamique"),
                     ('mécanique', 'mécanique'),
+                    ('électrique', 'électrique'),
+                    ('environnemental', 'environnemental'),
                     )
 
     class Meta:
@@ -12,7 +15,7 @@ class Propriete(models.Model):
         verbose_name_plural = "Propriétés"
 
     nom = models.CharField(max_length=255, unique=True)
-    unite = models.CharField(max_length=30, verbose_name='unité', default="N.R.")
+    unite = models.CharField(max_length=30, verbose_name='unité', blank=True, null=True)
     definition = models.TextField(verbose_name='définition', default="N.R.")
     type = models.CharField(max_length=255, null=True, blank=True, choices=TYPE_CHOICES)
 
