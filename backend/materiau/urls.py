@@ -1,2 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework import routers
+from .views.materiau import MateriauViewSet
 
+router = routers.DefaultRouter()
+router.register(r'materiaux', MateriauViewSet)
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+]
