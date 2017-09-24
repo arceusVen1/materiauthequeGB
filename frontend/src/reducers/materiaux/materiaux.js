@@ -3,7 +3,7 @@ import { types } from "./materiaux.action"
 const initialState = {
     loading: false,
     error: null,
-    materiaux: [],
+    listMateriaux: [],
 };
 
 export default function materiauxReducer(state=initialState, action) {
@@ -17,7 +17,7 @@ export default function materiauxReducer(state=initialState, action) {
             return {
                 error: null,
                 loading: false,
-                materiaux: action.data,
+                listMateriaux: action.data,
             };
         case types.LIST_MATERIAUX.FAIL:
             return {
