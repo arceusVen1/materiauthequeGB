@@ -6,14 +6,10 @@ const myInit = { method: 'GET',
     cache: 'default' };
 
 export const fetchListMateriau = async () => {
-    try {
-        const resp = await fetch('http://localhost:8000/api/materiaux/', myInit)
-        console.log(resp)
-        const data = await resp.json();
-        return data;
-    } catch (error) {
-        console.log(error)
-    }
+    const resp = await fetch('http://localhost:8000/api/materiaux/', myInit)
+    console.log(resp)
+    const data = await resp.json();
+    return data;
 };
 
 

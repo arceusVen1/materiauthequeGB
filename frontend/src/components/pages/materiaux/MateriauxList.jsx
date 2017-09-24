@@ -31,6 +31,7 @@ class MateriauxList extends PureComponent {
     render() {
         const { error, loading, listMateriaux } = this.props;
         return <div>
+            <p>{error !== null ? 'erreur de chargment' : ''}</p>
             <p>{error}</p>
             <p>{loading ? 'chargement' : ''}</p>
             <button onClick={this.onClick}>{!this.state.showList ? 'show list' : 'hide list'}</button>
