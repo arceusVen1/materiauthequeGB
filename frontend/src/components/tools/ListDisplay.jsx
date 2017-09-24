@@ -7,7 +7,7 @@ class ListDisplay extends PureComponent {
     render() {
 
         return (<ul>{this.props.list.map((item, index) => (
-            <ListElement id={item.id} nom={item.nom}/>
+            <ListElement key={item.id} id={item.id} nom={item.nom}/>
             ))}
             </ul>);
     }

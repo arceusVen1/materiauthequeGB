@@ -262,4 +262,11 @@ module.exports = {
   performance: {
     hints: false,
   },
+  externals: {
+    Config: JSON.stringify({
+      backendRoot: 'http://localhost:8000',
+      version: 'testVersion',
+      reduxLocalStorageKey: 'redux',
+      })
+    }
 };
