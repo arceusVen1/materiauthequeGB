@@ -7,9 +7,9 @@ from ..serializers.fournisseur import FournisseurSerializer
 class FournisseurViewSet(mixins.ListModelMixin,
                          mixins.RetrieveModelMixin,
                          viewsets.GenericViewSet):
+    """
+        A viewset that provides `retrieve`, and `list` actions.
+    """
 
     queryset = Fournisseur.objects.all()
     serializer_class = FournisseurSerializer
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
