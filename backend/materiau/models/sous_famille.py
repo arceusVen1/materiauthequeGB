@@ -13,6 +13,10 @@ class SousFamille(models.Model):
     famille = models.ForeignKey(Famille)
 
     @property
+    def nombre_de_materiaux(self):
+        return self.materiau_set.count()
+
+    @property
     def reference(self):
         return '{}-{}'.format(self.famille.reference, self.numero_de_reference)
 

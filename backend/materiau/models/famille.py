@@ -8,6 +8,8 @@ class Famille(models.Model):
         verbose_name_plural = "Familles"
 
     matiere = models.CharField(max_length=255, blank=True, null=True)
+
+    # l'url de l'API utilise ce champs comme slug (voir lookup_field)
     reference = models.CharField(max_length=2, unique=True, blank=True, null=True)
 
     def compute_and_save(self):
