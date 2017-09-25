@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models.materiau import MateriauApprouve, Brouillon
-from .models.sous_famille import SousFamille
-from .models.famille import Famille
-from .models.fournisseur import Fournisseur
-from .models.propriete import Propriete
-from .models.attribut import Attribut
+from .models import MateriauApprouve, Brouillon
+from .models import SousFamille
+from .models import Famille
+from .models import Fournisseur
+from .models import Propriete
+from .models import Attribut
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 

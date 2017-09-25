@@ -17,6 +17,9 @@ class Attribut(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if self.qualificatif is not None:
+
+            # Pour mettre le qualificatif dans un format correct
+
             liste = self.qualificatif.split(' ')
             liste[0] = liste[0].title()
             self.qualificatif = ' '.join(liste)

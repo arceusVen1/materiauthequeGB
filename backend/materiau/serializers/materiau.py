@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from materiau.models.materiau import Materiau
+from materiau.models import Materiau
 
 
 class MateriauSerializer(serializers.ModelSerializer):

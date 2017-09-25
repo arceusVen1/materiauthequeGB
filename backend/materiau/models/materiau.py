@@ -40,7 +40,7 @@ class Materiau(models.Model):
     def generate_folder(self):
         """
         generate a folder for the media of a matériau in media/materiaux/
-        named by the id of the matériau. The id never changes so ne need to recall this function after first save
+        named by the id of the matériau. The id never changes so no need to recall this function after first save
         """
         path = os.path.join(settings.MEDIA_ROOT, "materiaux/" + str(self.id))
         try:
@@ -68,7 +68,7 @@ class Materiau(models.Model):
             super().save()
 
         # then we generate the qr code  and folder
-        # we call generate folder for each save in case a brouillon is turned into a matériau approuvé
+        # we call generate folder for each save in case a brouillon is turned into a "matériau approuvé"
 
         self.generate_folder()
         self.generate_qr_code()

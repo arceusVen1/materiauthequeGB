@@ -21,7 +21,7 @@ class Propriete(models.Model):
 
     @property
     def reference(self):
-        return self.nom.lower().replace('\'', ' ').replace(' ', '-')
+        return self.nom.lower().replace('\'', '-').replace(' ', '-')
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
