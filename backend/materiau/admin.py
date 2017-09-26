@@ -8,6 +8,7 @@ from .models import Attribut
 from .models import FormeMarchande
 from .models import MiseEnForme
 from .models import Traitement
+from .models import Aspect
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 
@@ -72,6 +73,7 @@ class ProprieteAdmin(admin.ModelAdmin):
 class FormeMarchandeAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(MiseEnForme)
 class MiseEnFormeAdmin(admin.ModelAdmin):
     pass
@@ -79,6 +81,11 @@ class MiseEnFormeAdmin(admin.ModelAdmin):
 
 @admin.register(Traitement)
 class TraitementAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Aspect)
+class Aspect(admin.ModelAdmin):
     pass
 
 
