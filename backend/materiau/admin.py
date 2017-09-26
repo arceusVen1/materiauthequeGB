@@ -26,7 +26,7 @@ class FamilleAdmin(admin.ModelAdmin):
 @admin.register(SousFamille)
 class SousFamilleAdmin(admin.ModelAdmin):
 
-    readonly_fields = ('reference',)
+    readonly_fields = ('reference', 'nombre_de_materiaux',)
     form = MySousFamilleAdminForm
 
 
