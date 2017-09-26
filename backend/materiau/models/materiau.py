@@ -5,6 +5,7 @@ from .sous_famille import SousFamille
 from .fournisseur import Fournisseur
 from .forme_marchande import FormeMarchande
 from .mise_en_forme import MiseEnForme
+from .traitement import Traitement
 import qrcode
 
 
@@ -24,6 +25,7 @@ class Materiau(models.Model):
     fournisseur = models.ForeignKey(Fournisseur, null=True, blank=True)
     forme_marchande = models.ForeignKey(FormeMarchande, null=True, blank=True)
     mise_en_forme = models.ForeignKey(MiseEnForme, null=True, blank=True)
+    traitement = models.ForeignKey(Traitement, null=True, blank=True)
     commentaire = models.TextField(null=True, blank=True)
 
 

@@ -7,7 +7,7 @@ Migrations pour ajouter automatiquement les mise en formes prédéfinies en cas 
 from django.db import migrations, models
 
 
-def add_default_forme_marchande(apps, schema_editor):
+def add_default_mise_en_forme(apps, schema_editor):
     MiseEnForme = apps.get_model('materiau', 'MiseEnForme')
     MiseEnForme.objects.create(type='Usinage')
     MiseEnForme.objects.create(type='Découpage')
@@ -18,7 +18,7 @@ def add_default_forme_marchande(apps, schema_editor):
 
 
 # reverse function si besoin
-def remove_default_forme_marchande(apps, schema_editor):
+def remove_default_mise_en_forme(apps, schema_editor):
     MiseEnForme = apps.get_model('materiau', 'MiseEnForme')
     MiseEnForme.objects.get(type='Usinage').delete()
     MiseEnForme.objects.get(type='Découpage').delete()
@@ -36,5 +36,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_default_forme_marchande, remove_default_forme_marchande),
+        migrations.RunPython(add_default_mise_en_forme, remove_default_mise_en_forme),
     ]
