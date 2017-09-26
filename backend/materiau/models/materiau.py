@@ -4,6 +4,7 @@ from django.conf import settings
 from .sous_famille import SousFamille
 from .fournisseur import Fournisseur
 from .forme_marchande import FormeMarchande
+from .mise_en_forme import MiseEnForme
 import qrcode
 
 
@@ -22,6 +23,7 @@ class Materiau(models.Model):
     brouillon = models.BooleanField(blank=True, default=False)
     fournisseur = models.ForeignKey(Fournisseur, null=True, blank=True)
     forme_marchande = models.ForeignKey(FormeMarchande, null=True, blank=True)
+    mise_en_forme = models.ForeignKey(MiseEnForme, null=True, blank=True)
     commentaire = models.TextField(null=True, blank=True)
 
 
