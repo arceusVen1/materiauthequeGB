@@ -5,6 +5,7 @@ from .models import Famille
 from .models import Fournisseur
 from .models import Propriete
 from .models import Attribut
+from .models import FormeMarchande
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 
@@ -63,4 +64,10 @@ class FournisseurAdmin(admin.ModelAdmin):
 @admin.register(Propriete)
 class ProprieteAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(FormeMarchande)
+class FormeMarchandeAdmin(admin.ModelAdmin):
+    pass
+
 
