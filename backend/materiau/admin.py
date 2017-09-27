@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.html import format_html
+
 from .models import MateriauApprouve, Brouillon
 from .models import SousFamille
 from .models import Famille
@@ -37,11 +39,18 @@ class MateriauAdmin(admin.ModelAdmin):
     """
     list_display = ("reference", "nom", "fournisseur", "date_de_creation")
     date_hierarchy = 'date_de_creation'
-    readonly_fields = ('qr_code', 'date_de_creation', 'reference')
+    readonly_fields = ('qr_code', 'date_de_creation', 'reference', "site_web_du_fournisseur",)
     inlines = [
         AttributInline,
     ]
     form = MyMateriauAdminForm
+
+    def site_web_du_fournisseur(self, obj):
+        return format_html('<a href="{}">{}</a>',
+                           obj.fournisseur.site_web,
+                           obj.fournisseur.site_web,
+
+                           )
 
     fieldsets = (
         ("Informations sur le materiau", {
@@ -57,6 +66,7 @@ class MateriauAdmin(admin.ModelAdmin):
         ("Fournisseur", {
             "fields": (
                 "fournisseur",
+                "site_web_du_fournisseur",
             )
         }),
         ("Usage", {
