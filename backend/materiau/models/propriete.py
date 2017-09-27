@@ -4,7 +4,7 @@ from django.db import models
 class Propriete(models.Model):
 
     TYPE_CHOICES = (('générale', 'générale'),
-                    ("thermique", "thermodynamique"),
+                    ("thermodynamique", "thermodynamique"),
                     ('mécanique', 'mécanique'),
                     ('électrique', 'électrique'),
                     ('environnemental', 'environnemental'),

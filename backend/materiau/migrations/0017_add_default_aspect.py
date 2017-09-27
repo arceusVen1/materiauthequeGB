@@ -38,17 +38,6 @@ def add_default_aspect(apps, schema_editor):
     Aspect.objects.create(type='Tactile', qualificatif="Autre")
 
 
-# reverse function si besoin
-def remove_default_traitement(apps, schema_editor):
-    Aspect = apps.get_model('materiau', 'Aspect')
-    Aspect.objects.get(type='Peinture').delete()
-    Aspect.objects.get(type='Aspect de surface').delete()
-    Aspect.objects.get(type='Recouvrement').delete()
-    Aspect.objects.get(type='Impression').delete()
-    Aspect.objects.get(type='Autre').delete()
-
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
