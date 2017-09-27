@@ -12,6 +12,24 @@ import qrcode
 
 class Materiau(models.Model):
 
+    EMPREINTE_ECOLOGIQUE_CHOICES = (("élevée", "élevée"),
+                                   ("moyenne", "moyenne"),
+                                   ("faible", "faible"),
+                                   )
+
+    ORIGINE_CHOICES = (("synthétique", "synthétique"),
+                       ("naturelle", "naturelle"),
+                       ("bio-sourcé", "bio-sourcé"),
+                       ("recyclé", "recyclé"),
+                       )
+
+    FIN_DE_VIE_CHOICES = (("déchet toxique", "déchet toxique"),
+                          ("recyclable", "recyclable"),
+                          ("valorisable", "valorisable"),
+                          ("biodégradable", "biodégradable"),
+                          )
+
+
     class Meta:
         verbose_name = "Matériau"
         verbose_name_plural = "Matériaux"
@@ -28,6 +46,10 @@ class Materiau(models.Model):
     mise_en_forme = models.ForeignKey(MiseEnForme, null=True, blank=True)
     traitement = models.ForeignKey(Traitement, null=True, blank=True)
     aspect = models.ManyToManyField(Aspect, blank=True)
+    empreinte_ecologique = models.CharField(max_length=255, verbose_name="Empreinte écologique", blank=True,
+                                            choices=EMPREINTE_ECOLOGIQUE_CHOICES)
+    origine = models.CharField(max_length=255, blank=True, choices=ORIGINE_CHOICES)
+    fin_de_vie = models.CharField(max_length=255, blank=True, choices=FIN_DE_VIE_CHOICES)
     commentaire = models.TextField(null=True, blank=True)
 
 
