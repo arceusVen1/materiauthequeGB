@@ -50,6 +50,9 @@ class Materiau(models.Model):
                                             choices=EMPREINTE_ECOLOGIQUE_CHOICES)
     origine = models.CharField(max_length=255, blank=True, choices=ORIGINE_CHOICES)
     fin_de_vie = models.CharField(max_length=255, blank=True, choices=FIN_DE_VIE_CHOICES)
+    classement_au_feu = models.TextField(blank=True, null=True)
+    classement_humidite = models.TextField(verbose_name="Classement à l'humidité", blank=True, null=True)
+    classement_ecologique = models.TextField(verbose_name="Classement écologique", blank=True, null=True)
     commentaire = models.TextField(null=True, blank=True)
 
 
