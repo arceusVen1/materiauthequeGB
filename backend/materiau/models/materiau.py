@@ -122,7 +122,7 @@ class BrouillonManager(models.Manager):
         return super().get_queryset().filter(brouillon=True)
 
 
-class MateriauApprouveManager(models.Manager):
+class ApprouveManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(brouillon=False)
 
@@ -142,4 +142,4 @@ class MateriauApprouve(Materiau):
         proxy = True
         verbose_name_plural = "Materiaux approuvés"
 
-    objects = MateriauApprouveManager()
+    objects = ApprouveManager()
