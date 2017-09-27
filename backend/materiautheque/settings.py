@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    # cors header to allow requests from ReactJs (might not be good for production)
     'corsheaders',
     'materiau',
+    'packaging'
 ]
 
 MIDDLEWARE = [
