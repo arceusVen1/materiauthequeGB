@@ -24,13 +24,17 @@ class AttributInline(admin.StackedInline):
 class FamilleAdmin(admin.ModelAdmin):
 
     form = MyFamilyAdminForm
+    list_display = ('reference', 'matiere',)
+    readonly_fields = ('nombre_de_sous_famille',)
 
 
 @admin.register(SousFamille)
 class SousFamilleAdmin(admin.ModelAdmin):
 
+    list_display = ('reference', 'matiere',)
     readonly_fields = ('reference', 'nombre_de_materiaux',)
     form = MySousFamilleAdminForm
+    ordering = ['famille']
 
 
 class MateriauAdmin(admin.ModelAdmin):
@@ -121,9 +125,10 @@ class FournisseurAdmin(admin.ModelAdmin):
     list_display = ('nom', 'site_web_url',)
 
     def site_web_url(self, obj):
-        return '<a href="%s">%s</a>' % (obj.site_web, obj.site_web)
-
-    site_web_url.allow_tags = True
+        return format_html('<a href="{}">{}</a>',
+                           obj.site_web,
+                           obj.site_web,
+                           )
 
 
 @admin.register(Propriete)
@@ -149,7 +154,9 @@ class TraitementAdmin(admin.ModelAdmin):
 
 @admin.register(Aspect)
 class Aspect(admin.ModelAdmin):
-    pass
+
+    list_display = ("qualificatif", "type")
+    ordering = ['type']
 
 
 

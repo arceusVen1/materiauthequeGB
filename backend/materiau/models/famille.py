@@ -12,6 +12,10 @@ class Famille(models.Model):
     # l'url de l'API utilise ce champs comme slug (voir lookup_field)
     reference = models.CharField(max_length=2, unique=True, blank=True, null=True)
 
+    @property
+    def nombre_de_sous_famille(self):
+        return self.sousfamille_set.count()
+
     def compute_and_save(self):
         self.matiere = self.matiere.upper()
         self.reference = self.reference.upper()
