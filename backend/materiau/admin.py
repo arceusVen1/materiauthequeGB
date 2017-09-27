@@ -31,26 +31,78 @@ class SousFamilleAdmin(admin.ModelAdmin):
     form = MySousFamilleAdminForm
 
 
-@admin.register(MateriauApprouve)
-class MateriauApproveAdmin(admin.ModelAdmin):
-
+class MateriauAdmin(admin.ModelAdmin):
+    """
+    Abstract class for rerpresenting a materiaux (Appouve or Brouillon
+    """
+    list_display = ("reference", "nom", "fournisseur", "date_de_creation")
     date_hierarchy = 'date_de_creation'
-    readonly_fields = ('qr_code', 'date_de_creation',)
+    readonly_fields = ('qr_code', 'date_de_creation', 'reference')
     inlines = [
         AttributInline,
     ]
     form = MyMateriauAdminForm
+
+    fieldsets = (
+        ("Informations sur le materiau", {
+            "fields": (
+                "nom",
+                "sous_famille",
+                "brouillon",
+                "date_de_creation",
+                "disponible",
+                "qr_code",
+            )
+        }),
+        ("Fournisseur", {
+            "fields": (
+                "fournisseur",
+            )
+        }),
+        ("Usage", {
+            "fields": (
+                "forme_marchande",
+                "usage",
+                "mise_en_forme",
+                "traitement",
+            )
+        }),
+        ("Aspect", {
+            "fields": (
+            "aspect",
+            )
+        }),
+        ("Ecologie", {
+            "fields": (
+                "empreinte_ecologique",
+                "origine",
+                "fin_de_vie",
+            )
+        }),
+        ("Normes", {
+            "fields": (
+                "classement_au_feu",
+                "classement_humidite",
+                "classement_ecologique",
+            )
+        }),
+        ("Commentaires", {
+            "fields": (
+                "commentaire",
+            )
+        })
+    )
+
+
+@admin.register(MateriauApprouve)
+class MateriauxApprouveAdmin(MateriauAdmin):
+    pass
 
 
 @admin.register(Brouillon)
-class BrouillonAdmin(admin.ModelAdmin):
+class BrouillonAdmin(MateriauAdmin):
+    pass
 
-    date_hierarchy = 'date_de_creation'
-    readonly_fields = ('qr_code', 'date_de_creation',)
-    inlines = [
-        AttributInline,
-    ]
-    form = MyMateriauAdminForm
 
 
 @admin.register(Fournisseur)

@@ -36,6 +36,7 @@ class Materiau(models.Model):
 
     nom = models.CharField(max_length=255)
     sous_famille = models.ForeignKey(SousFamille)
+    description = models.TextField(blank=True, null=True)
     usage = models.TextField(default="N.R.", null=True, blank=True)
     date_de_creation = models.DateField(null=True, blank=True, auto_now_add=True)
     disponible = models.BooleanField(blank=True, default=True)
