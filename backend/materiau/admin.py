@@ -128,7 +128,8 @@ class FournisseurAdmin(admin.ModelAdmin):
 
 @admin.register(Propriete)
 class ProprieteAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ("nom", "unite", "type",)
 
 
 @admin.register(FormeMarchande)
