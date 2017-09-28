@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Packaging, Marque
+from .forms import MyPackagingAdminForm
+from .models import PackagingApprouve, Brouillon, Marque
+
 
 # Register your models here.
-
-@admin.register(Packaging)
 class PackagingAdmin(admin.ModelAdmin):
 
     def site_web_de_la_marque(self, obj):
@@ -14,12 +14,20 @@ class PackagingAdmin(admin.ModelAdmin):
                            obj.marque.site_web,
                            )
 
-    readonly_fields = ("site_web_de_la_marque",)
+    form = MyPackagingAdminForm
+
+    readonly_fields = ("reference",
+                       "qr_code",
+                       "site_web_de_la_marque",
+                       "date_de_creation",
+                       )
     fieldsets = (
         ("Informations sur le packaging", {
             "fields": (
                 "nom",
                 "reference",
+                "date_de_creation",
+                "brouillon",
                 "description",
                 "qr_code",
             ),
@@ -37,12 +45,22 @@ class PackagingAdmin(admin.ModelAdmin):
                 "mise_en_forme",
             )
         }),
-        (None, {
+        ("Commentaires", {
             "fields": (
                 "commentaire",
             )
         }),
     )
+
+
+@admin.register(PackagingApprouve)
+class PackagingApprouveAdmin(PackagingAdmin):
+    pass
+
+
+@admin.register(Brouillon)
+class BrouillonAdmin(PackagingAdmin):
+    pass
 
 
 @admin.register(Marque)

@@ -60,6 +60,7 @@ class MateriauAdmin(admin.ModelAdmin):
         ("Informations sur le materiau", {
             "fields": (
                 "nom",
+                "reference",
                 "sous_famille",
                 "brouillon",
                 "date_de_creation",

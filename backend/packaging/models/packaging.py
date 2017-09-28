@@ -1,5 +1,5 @@
 from django.db import models
-from materiau.models import Materiau, BrouillonManager, ApprouveManager
+from materiau.models import MateriauApprouve, BrouillonManager, ApprouveManager
 import os
 import qrcode
 from materiautheque import settings
@@ -11,13 +11,18 @@ class Packaging(models.Model):
     nom = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     brouillon = models.BooleanField(blank=True)
+    date_de_creation = models.DateField(null=True, blank=True, auto_now_add=True)
     nom_produit = models.CharField(verbose_name="Nom du produit", max_length=255, blank=True)
-    materiaux = models.ManyToManyField(Materiau, blank=True)
+    materiaux = models.ManyToManyField(MateriauApprouve, blank=True)
     fabrication = models.TextField(verbose_name="Procédé de fabrication", blank=True, null=True)
     mise_en_forme = models.TextField(blank=True, null=True)
     qr_code = models.ImageField(upload_to='packagings', null=True, blank=True)
     commentaire = models.TextField(blank=True, null=True)
     marque = models.ForeignKey(Marque, blank=True, null=True)
+
+    @property
+    def reference(self):
+        return "PACK-{}".format(self.id)
 
     def generate_qr_code(self):
         path = os.path.join(settings.MEDIA_ROOT, "packagings/" + str(self.id))

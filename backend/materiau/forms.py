@@ -31,7 +31,7 @@ class MyMateriauAdminForm(forms.ModelForm):
 
     class Meta:
         model = Materiau
-        exclude = ('qr_code', 'date_de_creation',)
+        exclude = ('reference', 'qr_code', 'date_de_creation',)
 
     def clean_nom(self):
         return self.cleaned_data['nom'].title()

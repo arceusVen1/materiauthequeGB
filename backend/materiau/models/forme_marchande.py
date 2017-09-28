@@ -3,6 +3,10 @@ from django.db import models
 
 class FormeMarchande(models.Model):
 
+    class Meta:
+        verbose_name = "Forme marchande"
+        verbose_name_plural = "Formes Marchandes"
+
     type = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True, blank=True)
 
