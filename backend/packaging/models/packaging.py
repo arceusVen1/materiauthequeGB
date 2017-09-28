@@ -3,18 +3,20 @@ from materiau.models import Materiau, BrouillonManager, ApprouveManager
 import os
 import qrcode
 from materiautheque import settings
+from .marque import Marque
 
 
 class Packaging(models.Model):
 
     nom = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    brouillon = models.BooleanField(null=True)
-    nom_produit = models.CharField(verbose_name="Nom du produit", blank=True)
+    brouillon = models.BooleanField(blank=True)
+    nom_produit = models.CharField(verbose_name="Nom du produit", max_length=255, blank=True)
     materiaux = models.ManyToManyField(Materiau, blank=True)
     fabrication = models.TextField(verbose_name="Procédé de fabrication", blank=True, null=True)
     mise_en_forme = models.TextField(blank=True, null=True)
     qr_code = models.ImageField(upload_to='packagings', null=True, blank=True)
+    marque = models.ForeignKey(Marque, blank=True, null=True)
 
     def generate_qr_code(self):
         path = os.path.join(settings.MEDIA_ROOT, "packagings/" + str(self.id))
