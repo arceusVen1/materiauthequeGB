@@ -114,7 +114,7 @@ class Materiau(models.Model):
         return u'/materiaux/{}'.format(self.reference)
 
     def __str__(self):
-        return self.reference
+        return "{} - {}".format(self.reference, self.nom)
 
 
 class BrouillonManager(models.Manager):

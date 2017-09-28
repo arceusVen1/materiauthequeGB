@@ -16,6 +16,7 @@ class Packaging(models.Model):
     fabrication = models.TextField(verbose_name="Procédé de fabrication", blank=True, null=True)
     mise_en_forme = models.TextField(blank=True, null=True)
     qr_code = models.ImageField(upload_to='packagings', null=True, blank=True)
+    commentaire = models.TextField(blank=True, null=True)
     marque = models.ForeignKey(Marque, blank=True, null=True)
 
     def generate_qr_code(self):
