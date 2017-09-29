@@ -5,6 +5,7 @@ import qrcode
 from materiautheque import settings
 from .marque import Marque
 from .impression import Impression
+from .finition import Finition
 
 class Packaging(models.Model):
 
@@ -20,6 +21,7 @@ class Packaging(models.Model):
     commentaire = models.TextField(blank=True, null=True)
     marque = models.ForeignKey(Marque, blank=True, null=True)
     impression = models.ForeignKey(Impression, blank=True, null=True)
+    finition = models.ForeignKey(Finition, blank=True, null=True)
 
     @property
     def reference(self):

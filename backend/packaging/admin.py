@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .forms import MyPackagingAdminForm
-from .models import PackagingApprouve, Brouillon, Marque
+from .models import PackagingApprouve, Brouillon, Marque, Impression, Finition
 
 
 # Register your models here.
@@ -65,4 +65,14 @@ class BrouillonAdmin(PackagingAdmin):
 
 @admin.register(Marque)
 class MarqueAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Impression)
+class ImpressionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Finition)
+class FinitionAdmin(admin.ModelAdmin):
     pass
