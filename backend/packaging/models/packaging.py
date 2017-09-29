@@ -4,7 +4,7 @@ import os
 import qrcode
 from materiautheque import settings
 from .marque import Marque
-
+from .impression import Impression
 
 class Packaging(models.Model):
 
@@ -19,6 +19,7 @@ class Packaging(models.Model):
     qr_code = models.ImageField(upload_to='packagings', null=True, blank=True)
     commentaire = models.TextField(blank=True, null=True)
     marque = models.ForeignKey(Marque, blank=True, null=True)
+    impression = models.ForeignKey(Impression, blank=True, null=True)
 
     @property
     def reference(self):
