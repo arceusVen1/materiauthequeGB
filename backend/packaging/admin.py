@@ -43,6 +43,8 @@ class PackagingAdmin(admin.ModelAdmin):
                 "materiaux",
                 "fabrication",
                 "mise_en_forme",
+                "impression",
+                "finition",
             )
         }),
         ("Commentaires", {
