@@ -8,3 +8,4 @@ from .forme_marchande import *
 from .mise_en_forme import *
 from .traitement import *
 from .aspect import *
+from .image import *
