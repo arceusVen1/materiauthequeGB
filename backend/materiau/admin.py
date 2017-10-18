@@ -11,6 +11,7 @@ from .models import FormeMarchande
 from .models import MiseEnForme
 from .models import Traitement
 from .models import Aspect
+from .models import Image
 from .forms import MyMateriauAdminForm, MySousFamilleAdminForm, MyFamilyAdminForm
 
 
@@ -39,7 +40,7 @@ class SousFamilleAdmin(admin.ModelAdmin):
 
 class MateriauAdmin(admin.ModelAdmin):
     """
-    Abstract class for rerpresenting a materiaux (Appouve or Brouillon
+    Abstract class for representing a materiau (Approuve or Brouillon)
     """
     list_display = ("reference", "nom", "fournisseur", "date_de_creation")
     date_hierarchy = 'date_de_creation'
@@ -105,7 +106,13 @@ class MateriauAdmin(admin.ModelAdmin):
             "fields": (
                 "commentaire",
             )
+        }),
+        ("Images", {
+            "fields": (
+                "image",
+            )
         })
+
     )
 
 
